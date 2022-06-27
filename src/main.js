@@ -1,12 +1,13 @@
-function carousel(id, images) {
+function SimpleCarousel(id, images, props) {
 
     /* START FUNCTIONS */
 
     this.initSetup = function () {
         this.selectedIndex = 0;
         this.carousel = $('#' + this.id);
-
-        this.generateCarousel(this.carousel);
+        
+        this.setupStyles();
+        this.generateCarousel(this.carousel, props);
         this.fillCarousel(this.content, this.images);
 
         this.counter.find('.carousel-total').text('' + this.items.length);
@@ -45,12 +46,17 @@ function carousel(id, images) {
             if (i == self.selectedIndex)
                 self.items[i].removeClass('hidden-item');
             self.items[i].css('background-image', "url('" + images[i] + "')");
+            this.setupItemClick(self.items[i], images[i]);
             content.append(self.items[i]);
         }
     };
 
-    this.generateCarousel = function (carousel) {
+    this.generateCarousel = function (carousel, props) {
         this.content = $('<div class="carousel-content"></div>');
+        if (props) {
+            this.content.css('height', props.height || '250px');
+            this.content.css('width', props.width || '300px');
+        }
         this.arrowPrev = $('<a class="arrow arrow-prev"></a>');
         this.arrowNext = $('<a class="arrow arrow-next"></a>');
         this.counter = $('<div class="counter"><span class="carousel-index"></span> / <span class="carousel-total"></span></div>');
@@ -64,13 +70,33 @@ function carousel(id, images) {
         counter.find('.carousel-index').text(index + 1);
     };
 
+    this.setupItemClick = function (item, imageUrl) {
+        item.on('click', function (evt) {
+            if (self.bigImage)
+                self.removeBigImage();
+            self.bigImage = $('<div class="big-image-bg"><img class="big-image" src="' + imageUrl + '"></div>');
+            self.bigImage.on('click', self.removeBigImage)
+            $('body').append(self.bigImage);
+        });
+    };
+
+    this.setupStyles = function() {
+        // TODO
+    };
+
+    this.removeBigImage = function () {
+        if (self.bigImage) {
+            self.bigImage.remove();
+            delete self.bigImage;
+        }
+    };
+
     /* END FUNCTIONS */
 
     var self = this;
     this.id = id;
     this.items = [];
     this.images = images;
+    props = props || {};
     this.initSetup();
 }
-
-

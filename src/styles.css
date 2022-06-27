@@ -1,65 +1,84 @@
-.carousel-content > .counter {
-    position: absolute;
-    bottom: 0;
-    transform: translateY(100%) translateX(50%);
-    right: 50%;
+.carousel-content>.counter {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(100%) translateX(50%);
+  right: 50%;
+}
+
+.big-image-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+.big-image {
+  position: fixed;
+  height: 80%;
+  width: 80%;
+  object-fit: contain;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.carousel-content {
+  position: relative;
+  margin: 0 auto;
+}
+
+.hidden-item {
+  opacity: 0;
+  z-index: -1;
+}
+
+.carousel-item {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 25px 50px;
+  transition: all 0.5s ease-in-out;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.arrow-prev {
+  left: -30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(135deg);
+}
+
+.arrow-next {
+  right: -30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.light {
+  color: white;
+}
+
+@media (max-width: 480px) {
+
+  .arrow,
+  .light .arrow {
+    background-size: 10px;
+    background-position: 10px 50%;
   }
-  
-  .carousel-content {
-    height: 250px;
-    position: relative;
-    width: 300px;
-    margin: 0 auto;
-  }
-  
-  .hidden-item {
-    opacity: 0;
-  }
-  
-  .carousel-item {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 25px 50px;
-    transition: all 0.5s ease-in-out;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 12px;
-    cursor: pointer;
-  }
-  
-  .arrow-prev {
-    left: -30px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%) rotate(135deg);
-  }
-  
-  .arrow-next {
-    right: -30px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%) rotate(-45deg);
-  }
-  
-  .light {
-    color: white;
-  }
-  
-  @media (max-width: 480px) {
-    .arrow,
-    .light .arrow {
-      background-size: 10px;
-      background-position: 10px 50%;
-    }
-  }
-  
+}

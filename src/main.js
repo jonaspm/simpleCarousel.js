@@ -10,10 +10,14 @@ class SimpleCarousel {
         this.onPrev = props.onPrev
         this.onNext = props.onNext
         this.onImageClick = props.onImageClick
-        this.initSetup()
+        
     }
 
-    initSetup() {
+    render() {
+        this.#initSetup()
+    }
+
+    #initSetup() {
         this.selectedIndex = 0
         this.carousel = document.querySelector('#' + this.id)
 
@@ -49,7 +53,7 @@ class SimpleCarousel {
                     item.classList.add('hidden-item')
             })
             this.changeCounter(this.counter, this.selectedIndex)
-            
+
         })
         this.carousel.querySelector('.arrow-prev').addEventListener('click', this.onPrev)
     }
@@ -57,7 +61,7 @@ class SimpleCarousel {
     fillCarousel(content, images) {
         this.items.length = 0
         var itemTemplate = '<div id="$ID" class="carousel-item hidden-item"></div>'
-        for (const [i,image]  of images.entries()) {
+        for (const [i, image] of images.entries()) {
             this.items.push(
                 this.constructor.createElement(
                     itemTemplate.replace('$ID', `item-${i}`)

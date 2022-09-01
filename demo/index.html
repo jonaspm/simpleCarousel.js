@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleCarousel Demo</title>
+    <link rel="stylesheet" href="../src/styles.css">
+    <script src="../src/main.js"></script>
+    <style>
+        body {
+            background: rgb(2,0,36);
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(45deg, rgb(21, 160, 116) 0%, rgb(55, 55, 174) 45%, rgb(55, 55, 174) 
+            55%, rgb(96, 192, 211) 100%);
+        }
+    </style>
+</head>
+<script>
+    window.addEventListener('load', () => {
+        // Images
+        const images = [
+            'https://wowslider.com/sliders/demo-80/data1/images/nature497978_1920.jpg',
+            'https://wowslider.com/sliders/demo-80/data1/images/sheet546475_1920.jpg',
+            'https://wowslider.com/sliders/demo-80/data1/images/plumage176723_1920.jpg'
+        ] 
+    
+        let carousel = new SimpleCarousel({
+            id: 'demoCarousel',
+            images,
+            height: '400px',
+            width: '400px',
+            onPrev: null,
+            onNext: null,
+            onImageClick: () => console.debug('clicked!')
+        })
+    })
+</script>
+<body>
+    <div id="demoCarousel"></div>
+</body>
+</html>
